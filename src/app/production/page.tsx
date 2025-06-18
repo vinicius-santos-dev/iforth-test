@@ -1,6 +1,6 @@
 import Sidebar from "@/src/shared/sidebar/Sidebar";
 
-const ProductsPage = () => {
+const ProductionPage = () => {
   return (
     <>
       <Sidebar />
@@ -8,4 +8,4 @@ const ProductsPage = () => {
   );
 };
 
-export default ProductsPage;
+export default ProductionPage;
