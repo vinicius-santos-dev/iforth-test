@@ -1,4 +1,5 @@
 import { Product } from "@/src/features/products/types/product.type";
+import { Production } from "../features/production/types/production.type";
 
 class MockDatabase {
   private products: Product[] = [
@@ -46,6 +47,47 @@ class MockDatabase {
     product.status = product.status === "ACTIVE" ? "INACTIVE" : "ACTIVE";
 
     return product;
+  }
+
+  private productions: Production[] = [
+    {
+      id: 1,
+      productId: 1,
+      quantity: 500,
+      status: "ACTIVE",
+    },
+    {
+      id: 2,
+      productId: 1,
+      quantity: 290,
+      status: "ACTIVE",
+    }
+  ]
+
+  private nextProductionId = this.productions.length + 1;
+
+  getAllProductions(): Production[] {
+    return this.productions;
+  }
+
+  addProduction(data: Omit<Production, "id">): Production {
+    const newProduction: Production = {
+      id: this.nextProductionId++,
+      ...data,
+    };
+
+    this.productions.push(newProduction);
+    return newProduction;
+  }
+
+  toggleProductionStatus(id: number): Production | undefined {
+    const prod = this.productions.find((production) => production.id === id);
+    
+    if (!prod) return;
+
+    prod.status = prod.status === "ACTIVE" ? "INACTIVE" : "ACTIVE";
+    
+    return prod;
   }
 }
 
