@@ -49,9 +49,9 @@ const CreateProductForm = () => {
     try {
       await createProduct({
         name: formData.product,
+        status: "ACTIVE",
         minProduction: formData.minProduction,
         maxProduction: formData.maxProduction,
-        status: "ACTIVE",
       });
 
       router.push("/products");
