@@ -1,4 +1,4 @@
-import { Product } from "../types/product.type";
+import { NewProduct, Product } from "../types/product.type";
 
 export async function getProducts(): Promise<Product[]> {
   const res = await fetch("/api/registers/products");
@@ -10,7 +10,7 @@ export async function getProducts(): Promise<Product[]> {
   return res.json();
 }
 
-export async function createProduct(product: Product): Promise<Product> {
+export async function createProduct(product: NewProduct): Promise<Product> {
   const res = await fetch("/api/registers/products", {
     method: "POST",
     headers: {

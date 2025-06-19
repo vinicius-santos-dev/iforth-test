@@ -5,7 +5,7 @@ import {
   toggleProductStatus as toggleProductStatusRequest,
 } from "../services/productService";
 import { useProductStore } from "../store";
-import { Product } from "../types/product.type";
+import { NewProduct } from "../types/product.type";
 
 export function useProducts() {
   const products = useProductStore((state) => state.products);
@@ -28,7 +28,7 @@ export function useProducts() {
     fetchProducts();
   }, [products.length, setProducts]);
 
-  const createProduct = async (product: Product) => {
+  const createProduct = async (product: NewProduct) => {
     try {
       const newProduct = await createProductRequest(product);
       addProduct(newProduct);
