@@ -3,6 +3,16 @@
 import { Product } from "@/src/features/products/types/product.type";
 import { ColumnDef } from "@tanstack/react-table";
 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger
+} from "@/src/components/ui/dropdown-menu";
+
+import { MoreHorizontal } from "lucide-react";
+import { useProducts } from "../../hooks/useProducts";
+
 
 export const columns: ColumnDef<Product>[] = [
   {
@@ -15,7 +25,25 @@ export const columns: ColumnDef<Product>[] = [
   {
     id: "actions",
     header: "AÇÕES",
-    cell: () => <p>...</p>,
+    cell: ({ row }) => {
+      const { toggleStatus } = useProducts();
+      const product = row.original;
+
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <button className="p-2 rounded hover:bg-gray-100 border focus:outline-none">
+              <MoreHorizontal className="w-4 h-4" />
+            </button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="start">
+            <DropdownMenuItem onClick={() => toggleStatus(product.id)}>
+              Alterar situação
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      );
+    }
   },
   {
     accessorKey: "status",
@@ -23,7 +51,7 @@ export const columns: ColumnDef<Product>[] = [
     cell: ({ row }) => {
       const status = row.original.status;
       return (
-        <div className={`text-sm inline-flex p-2 rounded  ${status === "ACTIVE" ? "bg-blue-500" : "text-red-500"}`}>
+        <div className={`text-sm inline-flex p-2 rounded  ${status === "ACTIVE" ? "bg-blue-500" : "bg-red-500"}`}>
           {status === "ACTIVE" ? "ATIVO" : "INATIVO"}
         </div>
       );
