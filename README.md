@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Desafio Técnico - iForth
 
-## Getting Started
+Este repositório contém a minha solução para o desafio técnico frontend proposto pela iForth.
 
-First, run the development server:
+## Demo
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Você pode acessar a versão publicada aqui:  
+[https://iforth-test.vercel.app](https://iforth-test.vercel.app)
+
+## Funcionalidades Implementadas
+
+### Autenticação
+- [x] Login com nome de usuário e senha
+- [x] Rotas protegidas com `AuthGuard`
+- [x] Persistência do usuário via Zustand
+
+### Produtos
+- [x] Listagem de produtos com filtro por situação (ativo/inativo/todos)
+- [x] Criação de produto com validação e modal de confirmação
+- [x] Alteração de status de produto (ativo/inativo)
+- [x] Tabela com paginação utilizando `shadcn/ui`
+
+### Apontamentos de Produção
+- [x] Listagem de apontamentos com filtros por situação e produto
+- [x] Destaque visual para produções fora do padrão de produção
+- [x] Visualização da justificativa quando aplicável
+- [x] Criação de apontamento com autocomplete de produto
+- [x] Modal obrigatório para justificativa de produções fora do padrão
+- [x] Modal de confirmação
+
+## Tecnologias Utilizadas
+
+- Next.js 15
+- TypeScript
+- Zustand (gerenciamento de estado)
+- React Hook Form (validação e controle de formulários)
+- TailwindCSS (estilização)
+- shadcn/ui (componentes de UI)
+
+## Estrutura do Projeto (Feature-based)
+
+```
+src
+├── app
+│ ├── api
+│ ├── login
+│ ├── products
+│ └── production
+├── components
+│ └── ui # Componentes genéricos de UI (tabela, select, etc.)
+├── features
+│ ├── auth # Fluxo de autenticação
+│ ├── products # Funcionalidade de produtos
+│ └── production # Funcionalidade de apontamentos de produção
+├── lib
+│ ├── mockDb.ts # Banco em memória (mock)
+└── shared # Sidebar, modal, botões, etc.
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Credenciais para Teste
+Usuário: iforth.development.test
+Senha: famosaSenha123
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Executar localmente
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+npm install
+npm run dev
+```
