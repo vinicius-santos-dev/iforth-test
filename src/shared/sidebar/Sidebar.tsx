@@ -1,3 +1,5 @@
+"use client";
+
 import { useAuth } from "@/src/features/auth/hooks/useAuth";
 import SidebarLink from "./SidebarLink";
 

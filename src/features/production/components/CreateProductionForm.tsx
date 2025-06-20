@@ -59,7 +59,7 @@ const CreateProductionForm = () => {
     try {
       await createProduction({
         productId: data.productId,
-        quantity: data.quantity,
+        quantity: Number(data.quantity),
         justification: data.justification,
         status: "ACTIVE",
       });
