@@ -6,6 +6,7 @@ export function useAuth() {
   const router = useRouter();
   const user = useAuthStore((state) => state.user);
   const loginStore = useAuthStore((state) => state.login);
+  const logoutStore = useAuthStore((state) => state.logout);
 
   const login = async (username: string, password: string) => {
     try {
@@ -18,8 +19,14 @@ export function useAuth() {
     }
   };
 
+  const logout = () => {
+    logoutStore();
+    router.push("/login");
+  }
+
   return {
     user,
     login,
+    logout,
   };
 }
