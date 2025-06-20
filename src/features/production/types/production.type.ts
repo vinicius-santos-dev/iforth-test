@@ -6,4 +6,5 @@ export interface Production {
   productId: number;
   quantity: number;
   status: ProductionStatus;
+  justification?: string;
 }

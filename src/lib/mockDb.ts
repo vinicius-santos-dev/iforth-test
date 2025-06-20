@@ -61,6 +61,7 @@ class MockDatabase {
       productId: 1,
       quantity: 290,
       status: "ACTIVE",
+      justification: "Justificativa exemplo para produção fora do padrão"
     }
   ]
 

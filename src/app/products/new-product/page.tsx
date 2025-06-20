@@ -12,7 +12,7 @@ const NewProductPage = () => {
         <main className="py-16 px-6 flex-1">
           <div className="font-bold text-3xl flex gap-3">
             <Link href="/products">
-              <p>Cadastro de produtos</p>
+              <p>Cadastro de Produtos</p>
             </Link>
 
             <span>&gt;</span>
