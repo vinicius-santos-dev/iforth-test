@@ -12,7 +12,9 @@ import {
 
 import { useProductStore } from "@/src/features/products/store";
 import { cn } from "@/src/lib/utils";
+import Modal from "@/src/shared/Modal";
 import { MoreHorizontal } from "lucide-react";
+import { useState } from "react";
 import { useProductions } from "../../hooks/useProductions";
 
 export const columns: ColumnDef<Production>[] = [
@@ -31,24 +33,39 @@ export const columns: ColumnDef<Production>[] = [
     cell: ({ row }) => {
       const { toggleStatus } = useProductions();
       const production = row.original;
+      const [open, setOpen] = useState(false);
 
       return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <button className="p-2 rounded hover:bg-gray-100 border focus:outline-none">
-              <MoreHorizontal className="w-4 h-4" />
-            </button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="start">
-            <DropdownMenuItem onClick={() => toggleStatus(production.id)}>
-              Alterar situação
-            </DropdownMenuItem>
+        <>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button className="p-2 rounded hover:bg-gray-100 border focus:outline-none">
+                <MoreHorizontal className="w-4 h-4" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start">
+              <DropdownMenuItem onClick={() => toggleStatus(production.id)}>
+                Alterar situação
+              </DropdownMenuItem>
 
-            {production.justification && (
-              <DropdownMenuItem>Ver justificativa</DropdownMenuItem>
-            )}
-          </DropdownMenuContent>
-        </DropdownMenu>
+              {production.justification && (
+                <DropdownMenuItem onClick={() => setOpen(true)}>
+                  Ver justificativa
+                </DropdownMenuItem>
+              )}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <Modal
+            open={open}
+            title="Justificativa"
+            description={production.justification}
+            onCancel={() => setOpen(false)}
+            onConfirm={() => setOpen(false)}
+            confirmLabel="Ok"
+            cancelLabel="Fechar"
+          />
+        </>
       );
     },
   },
